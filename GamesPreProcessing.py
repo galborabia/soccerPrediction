@@ -55,7 +55,7 @@ def getPlayersData(players,yearSt):
     return playersData
 
 def loadPlayersData():
-    dataframe = pd.read_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\average_player_attributes.csv",keep_default_na=False)
+    dataframe = pd.read_csv("specialData/average_player_attributes.csv",keep_default_na=False)
     global players_Dictionary
     players_Dictionary =dict()
     playerYearList=list()
@@ -122,7 +122,7 @@ def getMachesDataByAllTeam():
     global matchAttributes
     loadAttributes()
     matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
-    dataframe = pd.read_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\trainingDataNoMissingPlayers.csv",keep_default_na=False)
+    dataframe = pd.read_csv("allPlayers/trainingDataNoMissingPlayers.csv",keep_default_na=False)
     loadPlayersData()
     counter=0
     flag=True
@@ -150,20 +150,20 @@ def getMachesDataByAllTeam():
         fullGame={**mergeDic, **gameDic}
         if(counter>2000):
             if(flag):
-                matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingNoSplit.csv")
+                matchesNotSpliting.to_csv("allMaches/matchTrainingNoSplit.csv")
                 matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
                 counter=0
                 flag=False
                 print("2000")
             else:
-                matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingNoSplit.csv", header=False, mode='a')
+                matchesNotSpliting.to_csv("allMaches/matchTrainingNoSplit.csv", header=False, mode='a')
                 matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
                 counter=0
                 print("2000")
         else:
             counter+=1
             matchesNotSpliting = matchesNotSpliting.append(fullGame, ignore_index=True)
-    matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingNoSplit.csv", header=False, mode='a')
+    matchesNotSpliting.to_csv("allMaches/matchTrainingNoSplit.csv", header=False, mode='a')
 
 
 def getMachesDataBysplitTeam():
@@ -171,7 +171,7 @@ def getMachesDataBysplitTeam():
     global matchAttributes
     loadAttributes()
     matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
-    dataframe = pd.read_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\trainingDataNoMissingPlayers.csv",keep_default_na=False)
+    dataframe = pd.read_csv("allPlayers/trainingDataNoMissingPlayers.csv",keep_default_na=False)
     loadPlayersData()
     counter=0
     flag=True
@@ -199,20 +199,20 @@ def getMachesDataBysplitTeam():
         fullGame={**mergeDic, **gameDic}
         if(counter>2000):
             if(flag):
-                matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingSplitTeam.csv")
+                matchesNotSpliting.to_csv("allMaches/matchTrainingSplitTeam.csv")
                 matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
                 counter=0
                 flag=False
                 print("write2000")
             else:
-                matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingSplitTeam.csv", header=False, mode='a')
+                matchesNotSpliting.to_csv("allMaches/matchTrainingSplitTeam.csv", header=False, mode='a')
                 matchesNotSpliting = pd.DataFrame(columns=matchAttributes)
                 counter=0
                 print("write2000")
         else:
             counter+=1
             matchesNotSpliting = matchesNotSpliting.append(fullGame, ignore_index=True)
-    matchesNotSpliting.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\matchTrainingSplitTeam.csv", header=False, mode='a')
+    matchesNotSpliting.to_csv("allMaches/matchTrainingSplitTeam.csv", header=False, mode='a')
 
 
 def teamDiffrencesAttributes (home,away):
@@ -303,5 +303,7 @@ def createTeamAttributesBySplitTeam(playersData):
     fullgame['free_kick_accuracy'] = getMostValuefreeKick(playersData)
     return fullgame
 
-getMachesDataBysplitTeam()
-getMachesDataByAllTeam()
+# getMachesDataBysplitTeam()
+# getMachesDataByAllTeam()
+df=pd.read_csv("allGambling/matchTrainingGamblingNoSplit.csv",header=True)
+

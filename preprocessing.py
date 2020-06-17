@@ -12,7 +12,7 @@ global output
 
 def getPlayerData():
     global output
-    dataframe = pd.read_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\player_attributes.csv",keep_default_na=False)
+    dataframe = pd.read_csv("specialData/player_attributes.csv",keep_default_na=False)
     playerDataList = list()
     playerID=-1
     columnsNames= ['player_fifa_api_id','player_api_id','date',	'overall_rating',	'potential',	'preferred_foot',	'attacking_work_rate',	'defensive_work_rate',	'crossing',	'finishing',	'heading_accuracy',	'short_passing',	'volleys',	'dribbling',	'curve',	'free_kick_accuracy',	'long_passing',	'ball_control',	'acceleration',	'sprint_speed',	'agility',	'reactions',	'balance',	'shot_power',	'jumping',	'stamina',	'strength',	'long_shots',	'aggression',	'interceptions',	'positioning',	'vision',	'penalties',	'marking',	'standing_tackle',	'sliding_tackle',	'gk_diving',	'gk_handling',	'gk_kicking',	'gk_positioning',	'gk_reflexes']
@@ -30,7 +30,7 @@ def getPlayerData():
             playerDataList.append(row)
             playerID = id
     splitPlayerDataByYear(playerDataList)
-    output.to_csv(r"C:\Users\gal\Desktop\ISE\semesterF\project\data\\average_player_attributes.csv")
+    output.to_csv("specialData/average_player_attributes.csv")
 
 
 def splitPlayerDataByYear(playerDataList) :
