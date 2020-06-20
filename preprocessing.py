@@ -140,9 +140,17 @@ def calaculateAverage(playerAttributeDic):
                     average=sum/counter
                 playerAverageDic[key]=average
     return playerAverageDic
+def missinData():
+    df = pd.read_csv('newData/testMatchSplitTeam.csv')
+    col = ['home_win', 'home_draw','home_lose','away_win','away_draw','away_lose' ]
+
+
+    for c  in col:
+        df[c].fillna(df[c].mean(), inplace=True)
+    df.to_csv('test5.csv',header=True )
 
 
 
-
-getPlayerData()
+missinData()
+# getPlayerData()
 
